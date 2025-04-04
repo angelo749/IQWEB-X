@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navegador IQ</title>
+    <link rel="icon" href="logo.webp">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .claro{
+            background: white;
+            color: black;
+            transition: background 0.5s, color 0.5s;
+        }
+        .claro #themelook:hover {
+            background: dimgray;
+            color: white; 
+            transition: all .6s ease-in-out;
+        }
+        .oscuro{
+            background: dimgray;
+            color: white;
+            transition: background 0.5s, color 0.5s;
+        }
+        .oscuro #themelook:hover {
+            background: white;
+            color: black; 
+            transition: all .6s ease-in-out;
+        }
+        .oscuro #barra{
+            border: 1px darkred solid;
+        }
+        .oscuro button{
+            background: darkred;
+            color: white;
+            transition: all .6s ease-in-out;
+        }
+
+
+
+        #barra {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 15px;
+            border: 0.7px solid rgb(48,126,252);
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background: rgb(48,126,252);
+            border: none; 
+            border-radius: 14px;
+            color: white;
+        }
+
+        /* Estilos de la pantalla de carga */
+        #carga {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 1000;
+        }
+
+        #carga img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%; /* Hace la imagen circular */
+            background: white; /* Fondo blanco */
+            padding: 10px; /* Espaciado para evitar cortes */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* Animación para la carga */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Ocultar el buscador al inicio */
+        #buscador {
+            display: none;
+        }
+        .webpagina{
+          text-align: center;
+        }
+        .webpagina img{
+          width: 40px; 
+          height: 40px;
+          border-radius: 50%;
+          margin-top: 10px;
+        }
+        #themelook {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background: goldenrod;
+            border: none; 
+            border-radius: 14px;
+            color: white;
+        }
+    </style>
+</head>
+<body id="theme" class="claro">
+
+    <!-- Pantalla de carga -->
+    <div id="carga">
+        <img src="logo.webp" alt="IQWEB X">
+        <p>Cargando IQWEB X...</p>
+    </div>
+
+    <!-- Contenido del navegador (se oculta al inicio) -->
+    <div id="buscador">
+        <h2>IQWEB X</h2>
+        <input type="text" id="barra" placeholder="Escribe lo que buscas">
+        <button onclick="navegar()">Ir</button>
+    </div>
+    <section class="webpagina">
+      <a href=""><img src="iq.webp" /></a>
+    </section>
+
+
+
+
+
+
+
+
+    <button id="themelook" onclick="cambiarTema()">Cambiar Tema</button>
+
+    <script>
+        function navegar() {
+            let barra = document.getElementById("barra").value;
+            let url = "";
+
+            if (barra.includes(".")) {
+                url = "https://" + barra;
+            } else {
+                url = "https://www.google.com/search?q=" + encodeURIComponent(barra);
+            }
+
+            window.location.href = url; // Abre en la misma pestaña
+        }
+
+        // Ocultar la pantalla de carga y mostrar el buscador
+        setTimeout(() => {
+            document.getElementById("carga").style.display = "none";
+            document.getElementById("buscador").style.display = "block";
+        }, 3000);
+
+
+
+
+        // Cambiar entre tema claro y oscuro
+        function cambiarTema() {
+            document.getElementById("theme").classList.toggle("oscuro");
+        }
+
+
+
+
+
+    </script>
+
+</body>
+</html>
